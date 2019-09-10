@@ -172,22 +172,22 @@ A Line consist of a number of one or more senteces and a sentece consist of one 
 
 Example of Words:
 
-![alt text](https://github.com/DineroRegnskab/simple-ocr-sdk/blob/master/images/receipt%20explained%20words.jpg "Words")
+![Words](../master/images/receipt%20explained%20words.jpg "Words")
 
 
 Example of Senteces:
 
-![alt text](https://github.com/DineroRegnskab/simple-ocr-sdk/blob/master/images/receipt%20explained%20sentences.jpg "Sentences")
+![Sentences](../master/images/receipt%20explained%20sentences.jpg "Sentences")
 
 
 Example of Lines:
 
-![alt text](https://github.com/DineroRegnskab/simple-ocr-sdk/blob/master/images/receipt%20explained%20lines.jpg "Lines")
+![Lines](../master/images/receipt%20explained%20lines.jpg "Lines")
 
 
 All of it together:
 
-![alt text](https://github.com/DineroRegnskab/simple-ocr-sdk/blob/master/images/receipt%20explained%20-%20all.jpg "Words, Sentences and Lines")
+![Words, Sentences and Lines](../master/images/receipt%20explained%20-%20all.jpg "Words, Sentences and Lines")
 
 
 #### Coordinates
@@ -205,9 +205,8 @@ Words and sentences has relative coordinates. The x and y coordinates are measur
 
 X and y, represent the top left corner of the word or sentence.
 
-![alt text](https://github.com/DineroRegnskab/simple-ocr-sdk/blob/master/images/coordinates.png "Coordinates")
+![Coordinates](../master/images/coordinates.png "Coordinates")
 
 
 ## License
-
-MIT © [dineroregnskab](mailto:info@dinero.dk)
+Projected was created in collaboration with [dineroregnskab](mailto:info@dinero.dk) under MIT ©
