@@ -34,7 +34,7 @@ namespace AzureVisionApiSimpleOcrSdkTest.Integration.Parser
             Action action = ()=> _target.Execute(null, _imgWidth, _imgHeight);
 
             //Assert
-            action.ShouldNotThrow<NullReferenceException>();
+            action.Should().NotThrow<NullReferenceException>();
         }
 
         [Test]

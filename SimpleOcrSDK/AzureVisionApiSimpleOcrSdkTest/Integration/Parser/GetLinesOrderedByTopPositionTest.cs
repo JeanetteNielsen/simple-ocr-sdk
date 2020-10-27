@@ -26,7 +26,7 @@ namespace AzureVisionApiSimpleOcrSdkTest.Integration.Parser
 
             //Act
             //Assert
-            action.ShouldThrow<ArgumentNullException>()
+            action.Should().Throw<ArgumentNullException>()
                 .WithMessage("Value cannot be null.\r\nParameter name: ocrOutput");
         }
 

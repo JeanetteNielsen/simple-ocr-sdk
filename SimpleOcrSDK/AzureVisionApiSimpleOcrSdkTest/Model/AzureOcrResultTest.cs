@@ -30,7 +30,7 @@ namespace AzureVisionApiSimpleOcrSdkTest.Model
 
             //Act
             //Assert
-            act.ShouldThrow<ArgumentNullException>()
+            act.Should().Throw<ArgumentNullException>()
                 .WithMessage("Value cannot be null.\r\nParameter name: error");
         }
 
@@ -60,7 +60,7 @@ namespace AzureVisionApiSimpleOcrSdkTest.Model
 
             //Act
             //Assert
-            act.ShouldThrow<ArgumentNullException>()
+            act.Should().Throw<ArgumentNullException>()
                 .WithMessage("Value cannot be null.\r\nParameter name: imageContent");
         }
         [Test]
@@ -71,7 +71,7 @@ namespace AzureVisionApiSimpleOcrSdkTest.Model
 
             //Act
             //Assert
-            act.ShouldThrow<ArgumentNullException>()
+            act.Should().Throw<ArgumentNullException>()
                 .WithMessage("Value cannot be null.\r\nParameter name: rawAzureOcrResult");
         }
 
