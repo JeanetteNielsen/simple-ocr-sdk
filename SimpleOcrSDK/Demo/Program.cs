@@ -84,14 +84,14 @@ namespace Demo
         private static GoogleOcrEngine GetGoogleOcrEngine()
         {
             Console.WriteLine("To OCR process an image you need a google account and access to their vision API.");
-            Console.WriteLine("Input google API key:");
-            string apiKey = null;
-            while (string.IsNullOrWhiteSpace(apiKey))
+            Console.WriteLine("Input path to your google application credentials .json file:");
+            string googleCredentials = null;
+            while (string.IsNullOrWhiteSpace(googleCredentials))
             {
-                apiKey = Console.ReadLine();
+                googleCredentials = Console.ReadLine();
             }
 
-            var ocr = GoogleOcrEngine.Build(new GoogleOcrConfigurations(apiKey, "OcrWrapperDemo"));
+            var ocr = GoogleOcrEngine.Build(new GoogleOcrConfigurations(googleCredentials));
             Console.WriteLine("Google ocr engine instantiated.");
             Console.WriteLine();
             return ocr;
@@ -107,7 +107,14 @@ namespace Demo
                 subscriptionKey = Console.ReadLine();
             }
 
-            var ocr = AzureOcrEngine.Build(new AzureVisionConfigurations(subscriptionKey));
+            Console.WriteLine("Input your Azure endpoint:");
+            string endpoint = null;
+            while (string.IsNullOrWhiteSpace(endpoint))
+            {
+                endpoint = Console.ReadLine();
+            }
+
+            var ocr = AzureOcrEngine.Build(new AzureVisionConfigurations(subscriptionKey, endpoint));
             Console.WriteLine("Azure ocr engine instantiated.");
             Console.WriteLine();
             return ocr;
