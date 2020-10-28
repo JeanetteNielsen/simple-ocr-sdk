@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Google.Apis.Vision.v1.Data;
+using Google.Cloud.Vision.V1;
 
 namespace SimpleGoogleOcrSDK.Model
 {

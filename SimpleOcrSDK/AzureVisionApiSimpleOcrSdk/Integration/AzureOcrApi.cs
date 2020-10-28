@@ -1,27 +1,43 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
 using AzureVisionApiSimpleOcrSdk.Exceptions;
-using Microsoft.ProjectOxford.Vision;
-using Microsoft.ProjectOxford.Vision.Contract;
+using AzureVisionApiSimpleOcrSdk.Model;
+using Newtonsoft.Json;
 
 namespace AzureVisionApiSimpleOcrSdk.Integration
 {
     public class AzureOcrApi
     {
-        private readonly VisionServiceClient _client;
+        private readonly IAzureVisionConfigurations _config;
+        private readonly IStreamToByteContent _streamToByteContent;
+        private readonly IHttpClientBuilder _httpClientBuilder;
 
-        public AzureOcrApi(IAzureVisionConfigurations azureVisionConfigurations)
+        public AzureOcrApi(IAzureVisionConfigurations azureVisionConfigurations, IStreamToByteContent streamToByteContent, IHttpClientBuilder httpClientBuilder)
         {
-            _client = new VisionServiceClient(azureVisionConfigurations.SubscriptionKey);
+            _streamToByteContent = streamToByteContent;
+            _httpClientBuilder = httpClientBuilder;
+            _config = azureVisionConfigurations;
         }
 
-        public virtual async Task<OcrResults> Execute(Stream imageStream, string language = "unk")
+        public virtual async Task<RawAzureOcrResult> Execute(Stream imageStream)
         {
             try
             {
-                return await _client.RecognizeTextAsync(imageStream, language);
+                using (var client = _httpClientBuilder.BuildWithSubscriptionKey(_config.SubscriptionKey))
+                {
+                    HttpResponseMessage response;
+
+                    using (var content = _streamToByteContent.Execute(imageStream))
+                    {
+                        response = await client.PostAsync(_config.BuildUri().AbsoluteUri, content);
+                    }
+
+                    return JsonConvert.DeserializeObject<RawAzureOcrResult>(await response.Content.ReadAsStringAsync());
+                }
             }
-            catch (ClientException e)
+            catch (Exception e)
             {
                 throw new AzureOcrException(e);
             }

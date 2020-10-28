@@ -1,20 +1,20 @@
-﻿using Microsoft.ProjectOxford.Vision;
-using OcrMetadata.Exceptions;
+﻿using OcrMetadata.Exceptions;
+using System;
 
 namespace AzureVisionApiSimpleOcrSdk.Exceptions
 {
     public class AzureOcrException : OcrException
     {
-        public ClientException ClientException { get; set; }
+        public Exception ClientException { get; set; }
 
-        public AzureOcrException(ClientException e) : base("AzureOcrException occured")
+        public AzureOcrException(Exception e) : base("AzureOcrException occured")
         {
             ClientException = e;
         }
 
         public override string ToString()
         {
-            return $"AzureOcrException. Azure could not process image. Error: '{ClientException.Error.Code}' '{ClientException.Error.Message}' RequestId: '{ClientException.Error.RequestId}'" + base.ToString();
+            return $"AzureOcrException. Azure could not process image. Error: " + base.ToString();
         }
 
         public override string StackTrace => ClientException.StackTrace;

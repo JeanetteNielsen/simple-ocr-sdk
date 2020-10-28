@@ -1,10 +1,11 @@
 using AzureVisionApiSimpleOcrSdk.Integration.Parser;
+using AzureVisionApiSimpleOcrSdk.Model;
 using FluentAssertions;
-using Microsoft.ProjectOxford.Vision.Contract;
 using Moq;
 using NUnit.Framework;
 using OcrMetadata.Model;
-using Word = Microsoft.ProjectOxford.Vision.Contract.Word;
+using System.Collections.Generic;
+using Word = AzureVisionApiSimpleOcrSdk.Model.Word;
 
 namespace AzureVisionApiSimpleOcrSdkTest.Integration.Parser
 {
@@ -35,7 +36,7 @@ namespace AzureVisionApiSimpleOcrSdkTest.Integration.Parser
             _word1 = new Word();
             _word2 = new Word();
             _word3 = new Word();
-            _line = new Line { Words = new[] { _word1, _word2, _word3 } };
+            _line = new Line { Words = new List<Word>() { _word1, _word2, _word3 } };
 
             var metaWord1Mock = new Mock<IWord>();
             var metaWord2Mock = new Mock<IWord>();
@@ -87,7 +88,7 @@ namespace AzureVisionApiSimpleOcrSdkTest.Integration.Parser
         public void GivenLineWithWordsIsEmpty_WhenInvokingExecute_ThenNullIsReturned()
         {
             //Arrange
-            var line = new Line {Words = new Word[] { }};
+            var line = new Line {Words = new List<Word>()};
 
             //Act
             var result = _target.Execute(line, 0, 0, 0, 0);
@@ -122,7 +123,7 @@ namespace AzureVisionApiSimpleOcrSdkTest.Integration.Parser
             var word1 = new Word();
             var word2 = new Word();
             var word3 = new Word();
-            var line = new Line { Words = new[] { word1, word2, word3 } };
+            var line = new Line { Words = new List<Word>() { word1, word2, word3 } };
 
             var metaWord1 = new Mock<IWord>();
             var metaWord2 = new Mock<IWord>();

@@ -1,5 +1,5 @@
 using System.Linq;
-using Microsoft.ProjectOxford.Vision.Contract;
+using AzureVisionApiSimpleOcrSdk.Model;
 using OcrMetadata.Model;
 
 namespace AzureVisionApiSimpleOcrSdk.Integration.Parser

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using AzureVisionApiSimpleOcrSdk.Integration.Parser;
+using AzureVisionApiSimpleOcrSdk.Model;
 using FluentAssertions;
-using Microsoft.ProjectOxford.Vision.Contract;
 using Moq;
 using NUnit.Framework;
 using OcrMetadata.Model;
@@ -56,7 +56,7 @@ namespace AzureVisionApiSimpleOcrSdkTest.Integration.Parser
             Action action = () => _target.Execute(0, 0, new KeyValuePair<Point, List<Line>>(), 0, 0, null);
 
             //Assert
-            action.ShouldNotThrow<NullReferenceException>();
+            action.Should().NotThrow<NullReferenceException>();
         }
 
         [Test]

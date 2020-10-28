@@ -1,6 +1,6 @@
-using System;
 using OcrMetadata.Model;
-using Word = Microsoft.ProjectOxford.Vision.Contract.Word;
+using System;
+using Word = AzureVisionApiSimpleOcrSdk.Model.Word;
 
 namespace AzureVisionApiSimpleOcrSdk.Integration.Parser
 {
