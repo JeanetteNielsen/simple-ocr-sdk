@@ -1,8 +1,8 @@
 using System;
+using System.Collections.Generic;
 using AzureVisionApiSimpleOcrSdk.Integration.Parser;
 using AzureVisionApiSimpleOcrSdk.Model;
 using FluentAssertions;
-using Microsoft.ProjectOxford.Vision.Contract;
 using NUnit.Framework;
 
 namespace AzureVisionApiSimpleOcrSdkTest.Integration.Parser
@@ -42,8 +42,8 @@ namespace AzureVisionApiSimpleOcrSdkTest.Integration.Parser
             {
                 Regions = new[]
                 {
-                    new Region {Lines = new[] {topLine2, topLine3}},
-                    new Region {Lines = new[] {topLine1}}
+                    new Region {Lines = new List<Line>() {topLine2, topLine3}},
+                    new Region {Lines = new List<Line>() {topLine1}}
                 }
             };
 

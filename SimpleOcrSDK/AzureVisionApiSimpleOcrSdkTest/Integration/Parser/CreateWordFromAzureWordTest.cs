@@ -1,11 +1,9 @@
 using System;
 using AzureVisionApiSimpleOcrSdk.Integration.Parser;
 using FluentAssertions;
-using Microsoft.ProjectOxford.Vision.Contract;
 using Moq;
 using NUnit.Framework;
 using OcrMetadata.Model;
-using Word = Microsoft.ProjectOxford.Vision.Contract.Word;
 
 namespace AzureVisionApiSimpleOcrSdkTest.Integration.Parser
 {
@@ -47,12 +45,12 @@ namespace AzureVisionApiSimpleOcrSdkTest.Integration.Parser
             var height = 15;
             var returnCoord = new Coordinate(0, 0, 0, 0);
             _relativeCoords.Setup(z => z.Execute(
-                It.Is<Rectangle>(x => x.Height == height && x.Width == width && x.Top == top && x.Left == left),
+                It.Is<AzureVisionApiSimpleOcrSdk.Model.Rectangle>(x => x.Height == height && x.Width == width && x.Top == top && x.Left == left),
                 100, 200)).Returns(returnCoord);
 
             var wordValue = "MyTestWord";
 
-            var word = new Word
+            var word = new AzureVisionApiSimpleOcrSdk.Model.Word
             {
                 BoundingBox = $"{left},{top},{width},{height}",
                 Text = wordValue

@@ -45,9 +45,6 @@
     <Reference Include="FluentAssertions, Version=5.10.3.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentAssertions.5.10.3\lib\net47\FluentAssertions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ProjectOxford.Vision, Version=1.0.393.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ProjectOxford.Vision.1.0.393\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Microsoft.ProjectOxford.Vision.dll</HintPath>
-    </Reference>
     <Reference Include="Moq, Version=4.14.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.14.7\lib\net45\Moq.dll</HintPath>
     </Reference>
@@ -60,6 +57,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -70,6 +68,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AzureVisionConfigurationsTest.cs" />
+    <Compile Include="Integration\HttpClientBuilderTest.cs" />
     <Compile Include="Integration\Parser\AddSentencesAndReturnNewIndexTest.cs" />
     <Compile Include="Integration\Parser\AzureCreateRelativeCoordinateTest.cs" />
     <Compile Include="Integration\Parser\AzureOcrParserTest.cs" />
@@ -79,8 +79,10 @@
     <Compile Include="Integration\Parser\SortIntoLogicalLinesTest.cs" />
     <Compile Include="Integration\Parser\TransformAzureLineIntoSentenceTest.cs" />
     <Compile Include="Integration\Parser\TransformLinesIntoSentecesTest.cs" />
+    <Compile Include="Integration\StreamToByteContentTest.cs" />
     <Compile Include="Model\AzureOcrResultTest.cs" />
     <Compile Include="Model\RawAzureOcrResultTest.cs" />
+    <Compile Include="Model\RectangleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

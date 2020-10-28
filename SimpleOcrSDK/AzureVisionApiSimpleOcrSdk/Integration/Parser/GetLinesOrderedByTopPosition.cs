@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AzureVisionApiSimpleOcrSdk.Model;
-using Microsoft.ProjectOxford.Vision.Contract;
 
 namespace AzureVisionApiSimpleOcrSdk.Integration.Parser
 {

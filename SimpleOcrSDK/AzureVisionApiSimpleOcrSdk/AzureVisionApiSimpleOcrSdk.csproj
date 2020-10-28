@@ -31,16 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.ProjectOxford.Vision, Version=1.0.393.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ProjectOxford.Vision.1.0.393\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Microsoft.ProjectOxford.Vision.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Integration\HttpClientBuilder.cs" />
     <Compile Include="Integration\Parser\AddSentencesAndReturnNewIndex.cs" />
     <Compile Include="Integration\Parser\AzureCreateRelativeCoordinate.cs" />
     <Compile Include="Integration\Parser\AzureOcrParser.cs" />
@@ -50,11 +49,16 @@
     <Compile Include="Integration\Parser\SortIntoLogicalLines.cs" />
     <Compile Include="Integration\Parser\TransformAzureLineIntoSentence.cs" />
     <Compile Include="Integration\Parser\TransformLinesIntoSenteces.cs" />
+    <Compile Include="Integration\StreamToByteContent.cs" />
     <Compile Include="Model\AzureOcrResult.cs" />
     <Compile Include="Integration\AzureOcrApi.cs" />
     <Compile Include="Exceptions\AzureOcrException.cs" />
     <Compile Include="AzureVisionConfigurations.cs" />
     <Compile Include="AzureOcrEngine.cs" />
+    <Compile Include="Model\Line.cs" />
+    <Compile Include="Model\Rectangle.cs" />
+    <Compile Include="Model\Region.cs" />
+    <Compile Include="Model\Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\RawAzureOcrResult.cs" />
   </ItemGroup>

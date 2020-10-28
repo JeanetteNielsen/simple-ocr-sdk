@@ -1,5 +1,4 @@
 using System.Linq;
-using Microsoft.ProjectOxford.Vision.Contract;
 
 namespace AzureVisionApiSimpleOcrSdk.Model
 {
@@ -9,17 +8,6 @@ namespace AzureVisionApiSimpleOcrSdk.Model
         public string Orientation { get; set; }
         public Region[] Regions { get; set; }
         public double? TextAngle { get; set; }
-
-        public static RawAzureOcrResult CreateFrom(OcrResults ocrResults)
-        {
-            return new RawAzureOcrResult()
-            {
-                Language = ocrResults.Language,
-                Regions = ocrResults.Regions,
-                Orientation = ocrResults.Orientation,
-                TextAngle = ocrResults.TextAngle,
-            };
-        }
 
         public string GetAsPlainText()
         {

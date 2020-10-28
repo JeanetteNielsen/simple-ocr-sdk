@@ -27,7 +27,9 @@ namespace AzureVisionApiSimpleOcrSdk
         public static AzureOcrEngine Build(IAzureVisionConfigurations configurations)
         {
             var createCoords = new AzureCreateRelativeCoordinate(new CreateRelativeCoordinate());
-            return new AzureOcrEngine(new AzureOcrApi(configurations), OcrPreProcessing.Build(),
+            return new AzureOcrEngine(
+                new AzureOcrApi(configurations, new StreamToByteContent(),
+                    new HttpClientBuilder()), OcrPreProcessing.Build(),
                 new AzureOcrParser(
                     new TransformLinesIntoSentences(new AddSentencesAndReturnNewIndex(
                         new TransformAzureLineIntoSentence(createCoords, new CreateWordFromAzureWord(createCoords)))),
@@ -78,8 +80,7 @@ namespace AzureVisionApiSimpleOcrSdk
                 using (var stream = preprocessedResult.ImageFileStream)
                 {
                         ValidateImageProportions(preprocessedResult.NewImageHeight, preprocessedResult.NewImageWidth);
-                        var entries = await _azureVisionApi.Execute(stream);
-                        var rawAzureOcrResult = RawAzureOcrResult.CreateFrom(entries);
+                        var rawAzureOcrResult = await _azureVisionApi.Execute(stream);
                         var content = _azureOcrParser.Execute(rawAzureOcrResult, preprocessedResult.NewImageHeight,
                             preprocessedResult.NewImageWidth);
                         return AzureOcrResult.CreateSuccesResult(DateTime.Now.Subtract(start), content, rawAzureOcrResult);

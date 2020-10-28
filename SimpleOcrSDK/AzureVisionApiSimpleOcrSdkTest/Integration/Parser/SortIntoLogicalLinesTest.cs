@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using AzureVisionApiSimpleOcrSdk.Integration.Parser;
+using AzureVisionApiSimpleOcrSdk.Model;
 using FluentAssertions;
-using Microsoft.ProjectOxford.Vision.Contract;
 using NUnit.Framework;
 
 namespace AzureVisionApiSimpleOcrSdkTest.Integration.Parser
