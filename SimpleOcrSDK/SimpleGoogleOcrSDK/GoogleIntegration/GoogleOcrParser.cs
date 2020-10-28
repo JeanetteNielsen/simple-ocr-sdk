@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Google.Apis.Vision.v1.Data;
+using Google.Cloud.Vision.V1;
 using OcrMetadata.Model;
 using SimpleGoogleOcrSDK.Model;
 using Word = OcrMetadata.Model.Word;
@@ -48,8 +48,8 @@ namespace SimpleGoogleOcrSDK.GoogleIntegration
         {
             var vertices = arg.BoundingPoly.Vertices;
 
-            var yArray = vertices.Where(x => x.Y != null && x.Y >= 0).Select(x => x.Y.Value).Distinct();
-            var xArray = vertices.Where(x => x.X != null && x.X >= 0).Select(x => x.X.Value).Distinct();
+            var yArray = vertices.Where(x => x.Y >= 0).Select(x => x.Y).Distinct();
+            var xArray = vertices.Where(x => x.X >= 0).Select(x => x.X).Distinct();
 
             if (xArray.Count() < 2 || yArray.Count() < 2)
             {

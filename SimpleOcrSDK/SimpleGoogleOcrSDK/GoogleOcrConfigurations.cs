@@ -2,19 +2,16 @@
 {
     public interface IGoogleOcrConfigurations
     {
-        string GoogleVisionKey { get; }
-        string ApplicationName { get; }
+        string CredentialsJsonFile { get; }
     }
 
     public class GoogleOcrConfigurations : IGoogleOcrConfigurations
     {
-        public GoogleOcrConfigurations(string googleVisionKey, string applicationName)
+        public GoogleOcrConfigurations(string credentialsFile)
         {
-            GoogleVisionKey = googleVisionKey;
-            ApplicationName = applicationName;
+            CredentialsJsonFile = credentialsFile;
         }
 
-        public string GoogleVisionKey { get; }
-        public string ApplicationName { get; }
+        public string CredentialsJsonFile { get; }
     }
 }

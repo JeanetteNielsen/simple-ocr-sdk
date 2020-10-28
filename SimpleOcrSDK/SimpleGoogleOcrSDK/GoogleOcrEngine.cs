@@ -1,8 +1,8 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
-using Google.Apis.Services;
-using Google.Apis.Vision.v1;
+using Google.Cloud.Vision.V1;
 using OcrMetadata;
 using OcrMetadata.PreProcessing;
 using PreProcessing;
@@ -72,29 +72,23 @@ namespace SimpleGoogleOcrSDK
                 var preprocessedResult = _ocrPreProcessing.AjustOrientationAndSize(imageAsStream, fileFormatEnum);
                 using (var stream = preprocessedResult.ImageFileStream)
                 {
-                    using (var service = VisionService())
-                    {
-                        var entries = await service.RecognizeTextAsync(stream);
-                        var rawGoogleOcrResult = RawGoogleOcrResult.CreateFrom(entries);
-                        var content = _googleOcrParser.Execute(rawGoogleOcrResult, preprocessedResult.NewImageHeight,
-                            preprocessedResult.NewImageWidth);
-                        return GoogleOcrResult.CreateSuccessResult(DateTime.Now.Subtract(start), content, rawGoogleOcrResult);
-                    }
+                    
+                    var builder = new ImageAnnotatorClientBuilder {JsonCredentials = File.ReadAllText(_configurations.CredentialsJsonFile) };
+                    var client = await builder.BuildAsync();
+                    var img = await Image.FromStreamAsync(stream);
+                    var textAnnotations = await client.DetectTextAsync(img);
+
+                    var rawGoogleOcrResult = RawGoogleOcrResult.CreateFrom(textAnnotations.ToList());
+
+                    var content = _googleOcrParser.Execute(rawGoogleOcrResult, preprocessedResult.NewImageHeight,
+                        preprocessedResult.NewImageWidth);
+                    return GoogleOcrResult.CreateSuccessResult(DateTime.Now.Subtract(start), content, rawGoogleOcrResult);
                 }
             }
             catch (Exception e)
             {
                 return GoogleOcrResult.CreateErrorResult(DateTime.Now.Subtract(start), e);
             }
-        }
-
-        private VisionService VisionService()
-        {
-            return new VisionService(new BaseClientService.Initializer
-            {
-                ApplicationName = _configurations.ApplicationName,
-                ApiKey = _configurations.GoogleVisionKey,
-            });
         }
     }
 }
